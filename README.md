@@ -15,7 +15,7 @@ Email is a command line program that can send attachments, and stdin as the body
 
     touch ~/.config/email/config.json
 
-Copy the JSON below and update values according.
+Copy the JSON below and update values accordingly.
 
     {
         "mailbox": "youremail@gmail.com",
@@ -51,13 +51,17 @@ or from stdin
 
 ### Recipients
 
-Override recipients in settings file.
+Override recipients from settings file. Accepts a comma separated list.
 
-    email -t "some.other.email.address@example.com" -b "body"
+    email -t "one@example.com" -b "body"
+
+multiple recipients
+
+    email -t "one@example.com,two@example.com" -b "body"
 
 ### Subject
 
-Override subject in settings file
+Override subject from settings file
 
     email -s "subject" -b "body"
 
