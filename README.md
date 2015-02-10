@@ -68,3 +68,13 @@ Override subject from settings file
 ### All at once
 
     email -t "mum@example.com" -s "Some photos from the weekend" dinner.jpg tokyo-skyline.jpg
+
+## Tests
+
+To run tests
+
+    go test
+
+These tests will actually send an email using the settings in your config file. To avoid this set `EMAIL_SEND` enviroment variable to `0`.
+
+    EMAIL_SEND=0 go test
