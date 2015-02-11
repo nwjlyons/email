@@ -5,11 +5,8 @@ import (
 	"os"
 )
 
-// So stdin can be mocked during testing.
-var stdin *os.File
-
 func main() {
-	parseFlags(nil, nil)
+	setupInputs(nil, nil)
 
 	email, err := settings()
 	if err != nil {

@@ -30,7 +30,7 @@ func TestSettingsFromFile(t *testing.T) {
 
 func TestSettingsFromFlags(t *testing.T) {
 
-	parseFlags([]string{"-t", "joe.bloggs@example.com,user@example.com", "-s", "subject from flag", "-b", "body from flag"}, nil)
+	setupInputs([]string{"-t", "joe.bloggs@example.com,user@example.com", "-s", "subject from flag", "-b", "body from flag"}, nil)
 
 	email, err := settingsFromFlags()
 
@@ -59,7 +59,7 @@ func TestReadingBodyFromStdin(t *testing.T) {
 	content := "content from stdin"
 	file.WriteString(content)
 
-	parseFlags([]string{"-t", "", "-s", "", "-b", ""}, file)
+	setupInputs([]string{"-t", "", "-s", "", "-b", ""}, file)
 
 	email, err := settingsFromFlags()
 
@@ -83,7 +83,7 @@ func TestBodyIsNotBinary(t *testing.T) {
 		t.Error("binary.Write failed:", err)
 	}
 
-	parseFlags([]string{"-t", "", "-s", "", "-b", ""}, file)
+	setupInputs([]string{"-t", "", "-s", "", "-b", ""}, file)
 
 	_, err = settingsFromFlags()
 
@@ -94,7 +94,7 @@ func TestBodyIsNotBinary(t *testing.T) {
 
 func TestBodyIsRequiredWhenThereAreNoAttachments(t *testing.T) {
 
-	parseFlags([]string{"-t", "", "-s", "", "-b", ""}, nil)
+	setupInputs([]string{"-t", "", "-s", "", "-b", ""}, nil)
 	_, err := settingsFromFlags()
 
 	if err.Error() != "Body or attachment is required." {
@@ -104,7 +104,7 @@ func TestBodyIsRequiredWhenThereAreNoAttachments(t *testing.T) {
 
 func TestSettings(t *testing.T) {
 
-	parseFlags([]string{"-t", "a@b.com", "-s", "subject", "-b", "body"}, nil)
+	setupInputs([]string{"-t", "a@b.com", "-s", "subject", "-b", "body"}, nil)
 
 	email, err := settings()
 	if err != nil {
@@ -125,7 +125,7 @@ func TestSettings(t *testing.T) {
 }
 
 func TestSendingEmail(t *testing.T) {
-	parseFlags([]string{"-t", "", "-s", "", "-b", "body"}, nil)
+	setupInputs([]string{"-t", "", "-s", "", "-b", "body"}, nil)
 
 	email, err := settings()
 	if err != nil {

@@ -11,7 +11,10 @@ var (
 	body    = flag.String("b", "", "Body")
 )
 
-func parseFlags(args []string, file *os.File) {
+// So stdin can be mocked during testing.
+var stdin *os.File
+
+func setupInputs(args []string, file *os.File) {
 
 	// This trick allows command line flags to be be set in unit tests.
 	// See https://github.com/VonC/gogitolite/commit/f656a9858cb7e948213db9564a9120097252b429
@@ -20,11 +23,12 @@ func parseFlags(args []string, file *os.File) {
 		a = args
 	}
 
+	flag.CommandLine.Parse(a)
+
 	// This enables stdin to be mocked for testing.
 	if file != nil {
 		stdin = file
 	} else {
 		stdin = os.Stdin
 	}
-	flag.CommandLine.Parse(a)
 }
