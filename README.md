@@ -13,7 +13,7 @@ Email is a command line program that can send attachments, and stdin as the body
 
 ## Setup
 
-    touch ~/.config/email/config.json
+    mkdir -p ~/.config/email;touch ~/.config/email/config.json
 
 Copy the JSON below and update values accordingly.
 
