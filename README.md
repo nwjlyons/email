@@ -69,6 +69,10 @@ Override subject from settings file
 
     email -t "mum@example.com" -s "Some photos from the weekend" dinner.jpg tokyo-skyline.jpg
 
+### Provide your own config file
+
+    email -c ~/config.json -b "body" -s "subject"
+
 ## Tests
 
 To run tests
