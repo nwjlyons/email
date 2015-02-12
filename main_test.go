@@ -22,7 +22,7 @@ func tempFile() *os.File {
 
 func TestSettingsFromFile(t *testing.T) {
 
-	_, err := settingsFromFile()
+	_, err := settingsFromFile("")
 	if err != nil {
 		t.Error(err)
 	}

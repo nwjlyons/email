@@ -26,18 +26,18 @@ type Email struct {
 	attachments []string
 }
 
-func settingsFromFile() (email Email, err error) {
-
-	// This is the desired location.
-	// "~/.config/email/config.json"
-	// Need to use the user package to expand the tilde dynamically.
-	usr, err := user.Current()
-	if err != nil {
-		return email, err
+func settingsFromFile(filepath string) (email Email, err error) {
+	// If user can't provide own config file, use default
+	if len(filepath) == 0 {
+		// This is the desired location.
+		// "~/.config/email/config.json"
+		// Need to use the user package to expand the tilde dynamically.
+		usr, err := user.Current()
+		if err != nil {
+			return Email{}, err
+		}
+		filepath = path.Join(usr.HomeDir, ".config/email/config.json")
 	}
-
-	filepath := path.Join(usr.HomeDir, ".config/email/config.json")
-
 	// Check file exists.
 	if _, err := os.Stat(filepath); os.IsNotExist(err) {
 		// File does not exist.
@@ -124,8 +124,7 @@ func settingsFromFlags() (email Email, err error) {
 }
 
 func settings() (Email, error) {
-
-	fromFile, err := settingsFromFile()
+	fromFile, err := settingsFromFile(*config)
 	if err != nil {
 		return Email{}, err
 	}

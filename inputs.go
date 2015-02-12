@@ -9,6 +9,7 @@ var (
 	to      = flag.String("t", "", "Comma separated list of email addresses")
 	subject = flag.String("s", "", "Subject")
 	body    = flag.String("b", "", "Body")
+	config  = flag.String("c", "", "Config file")
 )
 
 // So stdin can be mocked during testing.
