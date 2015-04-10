@@ -4,12 +4,7 @@ Email is a command line program that can send attachments, and stdin as the body
 
 ## Install
 
-```
     go get github.com/nwjlyons/email
-    cd $GOPATH/src/github.com/nwjlyons/email
-    go build
-    go install
-```
 
 ## Setup
 
@@ -73,12 +68,18 @@ Override subject from settings file
 
     email -c ~/config.json -b "body" -s "subject"
 
+## Contributing
+
+- Install `godep`  `go get github.com/tools/godep`. 
+- Prefix go commands on the terminal with `godep`. eg instead of `go test` run `godep go test`.
+
 ## Tests
 
 To run tests
 
-    go test
+    godep go test
 
 These tests will actually send an email using the settings in your config file. To avoid this set `EMAIL_SEND` enviroment variable to `0`.
 
-    EMAIL_SEND=0 go test
+    EMAIL_SEND=0 godep go test
+
