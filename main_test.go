@@ -137,3 +137,18 @@ func TestSendingEmail(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestSendingURL(t *testing.T) {
+
+	setupInputs([]string{"-t", "", "-s", "", "-b", "http://example.com"}, nil)
+
+	email, err := settings()
+	if err != nil {
+		t.Error(err)
+	}
+
+	err = sendMail(email)
+	if err != nil {
+		t.Error(err)
+	}
+}
