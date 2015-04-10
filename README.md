@@ -70,7 +70,7 @@ Override subject from settings file
 
 ## Contributing
 
-- Install `godep`  `go get github.com/tools/godep`. 
+- Install `godep` with this command `go get github.com/tools/godep`. 
 - Prefix go commands on the terminal with `godep`. eg instead of `go test` run `godep go test`.
 
 ## Tests
