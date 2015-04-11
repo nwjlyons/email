@@ -117,7 +117,7 @@ func settingsFromFlags() (email Email, err error) {
 	email.attachments = flag.Args()
 
 	if len(email.attachments) <= 0 && email.body == "" {
-		return email, errors.New("Body or attachment is required.")
+		return email, errors.New("Email body or attachment is required.")
 	}
 
 	return email, err
