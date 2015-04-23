@@ -12,6 +12,11 @@ import (
 	"strings"
 )
 
+var (
+	ErrBodyOrAttachmentRequired = errors.New("Email body or attachment is required.")
+	ErrBodyIsNotText            = errors.New("Body is not text. Send as attachment instead.")
+)
+
 type Email struct {
 	Mailbox  string
 	From     string
@@ -106,7 +111,7 @@ func settingsFromFlags() (email Email, err error) {
 		}
 
 		if strings.HasPrefix(http.DetectContentType(stdinBody), "text") == false {
-			return email, errors.New("Body is not text. Send as attachment instead.")
+			return email, ErrBodyIsNotText
 		}
 
 		email.body = string(stdinBody)
@@ -117,7 +122,7 @@ func settingsFromFlags() (email Email, err error) {
 	email.attachments = flag.Args()
 
 	if len(email.attachments) <= 0 && email.body == "" {
-		return email, errors.New("Email body or attachment is required.")
+		return email, ErrBodyOrAttachmentRequired
 	}
 
 	return email, err

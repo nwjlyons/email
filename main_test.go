@@ -87,7 +87,7 @@ func TestBodyIsNotBinary(t *testing.T) {
 
 	_, err = settingsFromFlags()
 
-	if err.Error() != "Body is not text. Send as attachment instead." {
+	if err != ErrBodyIsNotText {
 		t.Error("Failed to detect binary data from stdin.")
 	}
 }
@@ -97,7 +97,7 @@ func TestBodyIsRequiredWhenThereAreNoAttachments(t *testing.T) {
 	setupInputs([]string{"-t", "", "-s", "", "-b", ""}, nil)
 	_, err := settingsFromFlags()
 
-	if err.Error() != "Body or attachment is required." {
+	if err != ErrBodyOrAttachmentRequired {
 		t.Error("Failed to detect empty body and no attachments.")
 	}
 }
