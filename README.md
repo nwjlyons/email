@@ -8,10 +8,9 @@ Email is a command line program that can send attachments, and stdin as the body
 
 ## Setup
 
-    mkdir -p ~/.config/email;vi ~/.config/email/config.json
+Copy and paste into a terminal and update values accordingly.
 
-Copy the JSON below and update values accordingly.
-
+    mkdir -p ~/.config/email;cat > ~/.config/email/config.json <<EOF
     {
         "mailbox": "youremail@gmail.com",
         "from": "youremail@gmail.com",
@@ -23,6 +22,8 @@ Copy the JSON below and update values accordingly.
         ],
         "subject": ""
     }
+    EOF
+    ;vi ~/.config/email/config.json
 
 ## Usage
 
